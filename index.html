@@ -1,1 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transformar em JSON</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+    }
+    label, input {
+      display: block;
+      margin-bottom: 10px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border: 1px solid #ccc;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Formulário de Aluno</h1>
+
+    <label for="mat">Matrícula:</label>
+    <input type="text" id="mat" placeholder="Digite a matrícula">
+
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" placeholder="Digite o nome">
+
+    <label for="idade">Idade:</label>
+    <input type="text" id="idade" placeholder="Digite a idade">
+
+    <label for="cpf">CPF:</label>
+    <input type="text" id="cpf" placeholder="Digite o CPF">
+
+    <button onclick="transformarEmJSON()">Transformar em JSON</button>
+
+    <pre id="jsonOutput"></pre>
+  </div>
+
+  <script>
+    function transformarEmJSON() {
+      // Pegando os valores dos campos
+      var mat = document.getElementById('mat').value;
+      var nome = document.getElementById('nome').value;
+      var idade = document.getElementById('idade').value;
+      var cpf = document.getElementById('cpf').value;
+
+      // Validação de campos vazios
+      if (!mat || !nome || !idade || !cpf) {
+        alert('Por favor, preencha todos os campos.');
+        return;
+      }
+
+      // Validação de idade ser um número inteiro
+      if (!Number.isInteger(Number(idade))) {
+        alert('A idade precisa ser um valor inteiro.');
+        return;
+      }
+
+      // Criando o objeto aluno
+      var aluno = {
+        matricula: mat,
+        nome: nome,
+        idade: parseInt(idade),
+        cpf: cpf
+      };
+
+      // Exibindo o objeto aluno como JSON no elemento <pre>
+      document.getElementById('jsonOutput').textContent = JSON.stringify(aluno, null, 2);
+    }
+  </script>
+</body>
+</html>
 
